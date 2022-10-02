@@ -1,0 +1,69 @@
+The syntax for table seller.
+---------------------------------------------------------------------------------------------------------------------
+
+create table seller(
+seller_id int primary key auto_increment,
+seller_name varchar(24) not null,
+seller_address varchar(24),
+seller_mobile varchar(10) not null unique,
+seller_email varchar(20) not null unique,
+seller_username varchar(10) not null unique,
+seller_password varchar(10) not null
+)ENGINE=InnoDB AUTO_INCREMENT=1000;
+
+
+The syntax for table buyer.
+---------------------------------------------------------------------------------------------------------------------
+
+create table buyer(
+buyer_id int primary key auto_increment,
+buyer_name varchar(24) not null,
+buyer_address varchar(24) not null,
+buyer_mobile varchar(10) not null unique,
+buyer_email varchar(20) unique,
+buyer_username varchar(10) not null unique,
+buyer_password varchar(10) not null
+)ENGINE=InnoDB AUTO_INCREMENT=2000;
+
+The syntax for table products.
+---------------------------------------------------------------------------------------------------------------------
+
+create table products(
+product_id int primary key auto_increment,
+product_name varchar(24) not null,
+product_quantity int not null,
+product_price int not null,
+product_indate date not null,
+product_sellerid int not null,
+category varchar(20) not null,
+FOREIGN KEY (product_sellerid) REFERENCES seller(seller_id)
+);
+
+
+The syntax for table sold products.
+---------------------------------------------------------------------------------------------------------------------
+
+create table sold_products(
+product_id int primary key,
+product_name varchar(24) not null,
+product_quantity int not null,
+product_price int not null,
+product_indate date not null,
+product_outdate date not null,
+product_sellerid int not null,
+product_buyerid int not null,
+category varchar(20) not null,
+FOREIGN KEY (product_buyerid) REFERENCES buyer(buyer_id)
+);
+
+
+
+The syntax for table admin.
+---------------------------------------------------------------------------------------------------------------------
+
+create table admin(
+admin_id int primary key auto_increment,
+admin_name varchar(24) not null,
+admin_username varchar(10) not null unique,
+admin_password varchar(10) not null
+)ENGINE=InnoDB AUTO_INCREMENT=500;
